@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
+import UserList from './Components/UserList'
 
 const App = () => {
 
+  const [ input, setInput ] = useState('')
   const [ users, setUsers ] = useState([])
   const [ filteredUsers, setFilteredUsers ] = useState([])
 
@@ -17,8 +19,8 @@ const App = () => {
   }, [])
 
  const filterUsers = (e) => {
-   const inputText = e.currentTarget.value
-   const filteredUsers = getFilteredUsers(inputText)
+   setInput(e.currentTarget.value)
+   const filteredUsers = getFilteredUsers(input)
    setFilteredUsers(filteredUsers)
  };
 
@@ -35,6 +37,10 @@ const App = () => {
            <input id='Input' placeholder='UserName' type='text' onInput={filterUsers}></input>
            <button id='SubmitButton' type='submit'>SUBMIT</button>
         </form>
+        <UserList
+          filteredUsers ={filteredUsers}
+          input={input}
+          />
     </div>
   );
 }
