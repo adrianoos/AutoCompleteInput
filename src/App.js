@@ -1,9 +1,19 @@
-import './App.css';
+import React from 'react';
+import axios from 'axios'
 
-function App() {
+const App = () => {
+
+  const getData = async () => {
+  const response = await axios.get(`https://jsonplaceholder.typicode.com/users`)
+  console.log(response)
+  }
+
+ getData()
+
+
   return (
-    <div id='MainContainer'>
-      <p>Hello Good App</p>
+    <div className="App">
+      Hello
     </div>
   );
 }
