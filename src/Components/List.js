@@ -1,19 +1,21 @@
 import React from 'react'
+import BoldPartStr from './BoldPartStr'
 
-const List = ({ filteredUsers, input }) => {
+const List = ({ filteredUsers, input, markup }) => {
+
     return (
         <>
         { filteredUsers && input ?
           <ul id='UserNameList'>
-          {filteredUsers.map((user, index) => {
+          {filteredUsers.map((user) => {
             return (
               <li key={user.id}>
-                {user.username}
+                <BoldPartStr user={user.username} id={user.id} markup={markup}/>
               </li>
             );
           })}
         </ul> : ''
-    }
+        }
       </>
     )
 }

@@ -8,6 +8,7 @@ const App = () => {
   const [ input, setInput ] = useState('')
   const [ users, setUsers ] = useState([])
   const [ filteredUsers, setFilteredUsers ] = useState([])
+  const [ markUp, SetMarkUp ] = useState('')
 
   const getData = async () => {
   const { data } = await axios.get(`https://jsonplaceholder.typicode.com/users`)
@@ -17,6 +18,20 @@ const App = () => {
   useEffect(() => {
    getData()
   }, [])
+
+  useEffect(() => {
+    markMatchingLetters()
+   }, [input])
+
+  const markMatchingLetters = () => {
+    for (let item of filteredUsers) {
+      if (item.username.substr(0, input.length).toUpperCase() === input.toUpperCase()) {
+      let marked = ((item.username.substr(0, input.length)))
+      SetMarkUp(marked)
+      }
+    }
+  };
+
 
  const filterUsers = (e) => {
    setInput(e.currentTarget.value)
@@ -28,9 +43,6 @@ const App = () => {
     return users.filter(item => item.username.toLowerCase().includes(inputText.toLowerCase()))
  };
 
- console.log(input)
- console.log(filteredUsers)
-
   return (
     <div id='MainContainer'>
       <h2>Search by UserName</h2>
@@ -41,6 +53,7 @@ const App = () => {
            <List
            filteredUsers={filteredUsers}
            input={input}
+           markup={markUp}
           />
         </div>
   );
