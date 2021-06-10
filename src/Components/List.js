@@ -1,5 +1,4 @@
 import React from 'react'
-import BoldPartStr from './BoldPartStr'
 
 const List = ({ filteredUsers, input, markup }) => {
 
@@ -10,7 +9,10 @@ const List = ({ filteredUsers, input, markup }) => {
           {filteredUsers.map((user) => {
             return (
               <li key={user.id}>
-                <BoldPartStr user={user.username} id={user.id} markup={markup}/>
+                   <span>
+                      <b>{user.username.slice(0, markup.length)}</b>
+                           {user.username.slice(markup.length)}
+                   </span>
               </li>
             );
           })}

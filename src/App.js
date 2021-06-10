@@ -1,9 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
-import List from './Components/List'
+import List from './Components/List';
+//import {useSelector} from 'react-redux';
 
 const App = () => {
+
+//const users2 = useSelector(state => state.users2)
+
+  //console.log(users2)
 
   const [ input, setInput ] = useState('')
   const [ users, setUsers ] = useState([])
