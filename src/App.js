@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
-import UserList from './Components/UserList'
 
 const App = () => {
 
@@ -30,17 +29,16 @@ const App = () => {
 
  console.log(filteredUsers)
 
+const placeHolder = filteredUsers.map((user) => user.username)
+
   return (
     <div id='MainContainer'>
         <h2>Search by UserName</h2>
-        <form id='SubmitForm'>
-           <input id='Input' placeholder='UserName' type='text' onInput={filterUsers}></input>
+        <form id='SubmitForm' autoComplete='off'>
+           <input id='Input' type='text' onInput={filterUsers}></input>
+           <input id='AutoComplete' placeholder={placeHolder}></input>
            <button id='SubmitButton' type='submit'>SUBMIT</button>
         </form>
-        <UserList
-          filteredUsers ={filteredUsers}
-          input={input}
-          />
     </div>
   );
 }
