@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
+import List from './Components/List'
 
 const App = () => {
 
@@ -27,19 +28,21 @@ const App = () => {
     return users.filter(item => item.username.toLowerCase().includes(inputText.toLowerCase()))
  };
 
+ console.log(input)
  console.log(filteredUsers)
-
-const placeHolder = filteredUsers.map((user) => user.username)
 
   return (
     <div id='MainContainer'>
-        <h2>Search by UserName</h2>
+      <h2>Search by UserName</h2>
         <form id='SubmitForm' autoComplete='off'>
-           <input id='Input' type='text' onInput={filterUsers}></input>
-           <input id='AutoComplete' placeholder={placeHolder}></input>
-           <button id='SubmitButton' type='submit'>SUBMIT</button>
+            <input id='Input' type='text' placeholder='UserName' onInput={filterUsers}></input>
+            <button id='SubmitButton' type='submit'>SUBMIT</button>
         </form>
-    </div>
+           <List
+           filteredUsers={filteredUsers}
+           input={input}
+          />
+        </div>
   );
 }
 
