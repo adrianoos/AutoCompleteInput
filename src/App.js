@@ -1,5 +1,6 @@
 import React from 'react';
-import axios from 'axios'
+import axios from 'axios';
+import './App.css';
 
 const App = () => {
 
@@ -12,8 +13,11 @@ const App = () => {
 
 
   return (
-    <div className="App">
-      Hello
+    <div id='MainContainer'>
+        <form id='SubmitForm'>
+           <input id='Input' placeholder='UserName' type='text' ></input>
+           <button id='SubmitButton' type='submit'>SUBMIT</button>
+        </form>
     </div>
   );
 }

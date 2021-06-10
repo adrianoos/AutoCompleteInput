@@ -1,0 +1,24 @@
+body {
+	margin: 0;
+	padding: 0;
+}
+#MainContainer {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+	background-image: linear-gradient(rgb(232, 253, 197), rgb(77, 77, 48));
+}
+
+#Input {
+	width: 300px;
+	height: 25px;
+	box-shadow: 5px 5px 5px rgb(80, 80, 80);
+}
+
+#SubmitButton {
+	height: 30px;
+	box-shadow: 5px 5px 5px rgb(80, 80, 80);
+}
