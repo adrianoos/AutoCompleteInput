@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import axios from 'axios';
 import List from './Components/List';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
+import { setInput } from './Actions'
 
 const App = () => {
 
-//const users2 = useSelector(state => state.users2)
+  const reduxState = useSelector(state => state)
+  const dispatch = useDispatch()
 
-  //console.log(users2)
+// read -> reduxState.input
+// write -> dispatch(setInput('Adrian'))
 
-  const [ input, setInput ] = useState('')
   const [ users, setUsers ] = useState([])
   const [ filteredUsers, setFilteredUsers ] = useState([])
   const [ markUp, SetMarkUp ] = useState('')
@@ -22,31 +24,28 @@ const App = () => {
 
   useEffect(() => {
    getData()
-  }, [input])
+  }, [reduxState.input])
 
   useEffect(() => {
     markMatchingLetters()
-   }, [input])
+   }, [reduxState.input])
 
 
  const markMatchingLetters = () => {
   for (let item of filteredUsers) {
-    if (item.username.substr(0, input.length).toUpperCase() === input.toUpperCase()) {
-    let marked = ((item.username.substr(0, input.length)))
+    if (item.username.substr(0, reduxState.input.length).toUpperCase() === reduxState.input.toUpperCase()) {
+    let marked = ((item.username.substr(0, reduxState.input.length)))
     SetMarkUp(marked)
     }
   }
 };
 
-
  const filterUsers = (e) => {
    const input = e.currentTarget.value
    const filtered = users.filter(user => user.username.toLowerCase().includes(input.toLowerCase()))
    setFilteredUsers(filtered)
-   setInput(input)
+   dispatch(setInput(input))
  };
-
- console.log(filteredUsers)
 
   return (
     <div id='MainContainer'>
@@ -57,7 +56,7 @@ const App = () => {
         </form>
            <List
            filteredUsers={filteredUsers}
-           input={input}
+           input={reduxState.input}
            markup={markUp}
           />
         </div>
