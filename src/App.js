@@ -3,7 +3,7 @@ import './App.css';
 import axios from 'axios';
 import List from './Components/List';
 import {useSelector, useDispatch} from 'react-redux';
-import { setInput } from './Actions'
+import { setInput, setMarkUp } from './Actions';
 
 const App = () => {
 
@@ -15,7 +15,6 @@ const App = () => {
 
   const [ users, setUsers ] = useState([])
   const [ filteredUsers, setFilteredUsers ] = useState([])
-  const [ markUp, SetMarkUp ] = useState('')
 
   const getData = async () => {
   const { data } = await axios.get(`https://jsonplaceholder.typicode.com/users`)
@@ -35,7 +34,7 @@ const App = () => {
   for (let item of filteredUsers) {
     if (item.username.substr(0, reduxState.input.length).toUpperCase() === reduxState.input.toUpperCase()) {
     let marked = ((item.username.substr(0, reduxState.input.length)))
-    SetMarkUp(marked)
+    dispatch(setMarkUp(marked))
     }
   }
 };
@@ -57,7 +56,7 @@ const App = () => {
            <List
            filteredUsers={filteredUsers}
            input={reduxState.input}
-           markup={markUp}
+           markup={reduxState.markUp}
           />
         </div>
   );

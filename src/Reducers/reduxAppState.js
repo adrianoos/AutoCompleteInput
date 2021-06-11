@@ -1,5 +1,8 @@
 
-const initialState = {input: ''}
+const initialState = {
+    input: '',
+    markUp: ''
+}
 
 const reduxState = ( state = initialState , action ) => {
 
@@ -10,10 +13,15 @@ const reduxState = ( state = initialState , action ) => {
             input: action.payload,
           }
         }
+        case 'setMarkUp': {
+            return {
+              ...state,
+              markUp: action.payload,
+            }
+          }
+
     default:
     return state
     }}
 
     export default reduxState;
-
-
