@@ -1,7 +1,8 @@
 
 const initialState = {
     input: '',
-    markUp: ''
+    markUp: '',
+    filteredUsers: []
 }
 
 const reduxState = ( state = initialState , action ) => {
@@ -19,9 +20,16 @@ const reduxState = ( state = initialState , action ) => {
               markUp: action.payload,
             }
           }
+        case 'setFilteredUsers': {
+            return {
+              ...state,
+              filteredUsers: action.payload,
+            }
+          }
 
     default:
     return state
-    }}
+    }
+};
 
     export default reduxState;

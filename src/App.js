@@ -3,7 +3,7 @@ import './App.css';
 import axios from 'axios';
 import List from './Components/List';
 import {useSelector, useDispatch} from 'react-redux';
-import { setInput, setMarkUp } from './Actions';
+import { setInput, setMarkUp, setFilteredUsers } from './Actions';
 
 const App = () => {
 
@@ -14,7 +14,6 @@ const App = () => {
 // write -> dispatch(setInput('Adrian'))
 
   const [ users, setUsers ] = useState([])
-  const [ filteredUsers, setFilteredUsers ] = useState([])
 
   const getData = async () => {
   const { data } = await axios.get(`https://jsonplaceholder.typicode.com/users`)
@@ -31,7 +30,7 @@ const App = () => {
 
 
  const markMatchingLetters = () => {
-  for (let item of filteredUsers) {
+  for (let item of reduxState.filteredUsers) {
     if (item.username.substr(0, reduxState.input.length).toUpperCase() === reduxState.input.toUpperCase()) {
     let marked = ((item.username.substr(0, reduxState.input.length)))
     dispatch(setMarkUp(marked))
@@ -42,7 +41,7 @@ const App = () => {
  const filterUsers = (e) => {
    const input = e.currentTarget.value
    const filtered = users.filter(user => user.username.toLowerCase().includes(input.toLowerCase()))
-   setFilteredUsers(filtered)
+   dispatch(setFilteredUsers(filtered))
    dispatch(setInput(input))
  };
 
@@ -54,7 +53,7 @@ const App = () => {
             <button id='SubmitButton' type='submit'>SUBMIT</button>
         </form>
            <List
-           filteredUsers={filteredUsers}
+           filteredUsers={reduxState.filteredUsers}
            input={reduxState.input}
            markup={reduxState.markUp}
           />

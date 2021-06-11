@@ -6,9 +6,6 @@ export const setMarkUp = (inputText) => {
     return {type: 'setMarkUp', payload: inputText}
 };
 
-//export const setData = (item) => {
-//    return {
-//        type: 'setData',
-//        payload: item
-//    }
-//};
+export const setFilteredUsers = (array) => {
+   return {type: 'setFilteredUsers', payload: array}
+};
