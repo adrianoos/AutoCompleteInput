@@ -2,6 +2,18 @@ import React from 'react'
 
 const List = ({ filteredUsers, input, markup }) => {
 
+const yes = (user) => {
+    return (
+        <b>{user.username.slice(0, markup.length)}</b>
+    )
+};
+
+const no = (user) => {
+    return (
+        <span>{user.username.slice(0, markup.length)}</span>
+    )
+};
+
     return (
         <>
         { filteredUsers && input ?
@@ -10,8 +22,8 @@ const List = ({ filteredUsers, input, markup }) => {
             return (
               <li key={user.id}>
                    <span>
-                      <b>{user.username.slice(0, markup.length)}</b>
-                           {user.username.slice(markup.length)}
+                       {user.username.includes(markup) ? yes(user) : no(user)}
+                       {user.username.slice(markup.length)}
                    </span>
               </li>
             );
