@@ -1,6 +1,9 @@
-import React from 'react'
+import React from 'react';
+import {useSelector} from 'react-redux';
 
-const List = ({ filteredUsers, input, markup }) => {
+const List = ({markup}) => {
+
+const reduxState = useSelector(state => state)
 
 const yes = (user) => {
     return (
@@ -16,9 +19,9 @@ const no = (user) => {
 
     return (
         <>
-        { filteredUsers && input ?
+        { reduxState.filteredUsers && reduxState.input ?
           <ul id='UserNameList'>
-          {filteredUsers.map((user) => {
+          {reduxState.filteredUsers.map((user) => {
             return (
               <li key={user.id}>
                    <span>
